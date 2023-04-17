@@ -24,6 +24,17 @@ namespace SampleECS
                 public int hp;
             }
         }
+
+        namespace Displayable
+        {
+
+            struct SpriteInfo
+            {
+                public int color;
+            }
+
+
+        }
     }
 
 }

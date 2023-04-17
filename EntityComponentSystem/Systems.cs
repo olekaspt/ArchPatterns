@@ -11,7 +11,7 @@ class Systems
         foreach (var entity in view)
         {
             ref SampleECS.Components.LivingCreature.Health health = ref registry.GetComponent<SampleECS.Components.LivingCreature.Health>(entity);
-            Console.WriteLine($"entity: {entity}, hp: {health.hp}");
+            Console.WriteLine($"Health entity: {entity}, hp: {health.hp}");
         }
     }
 
@@ -34,9 +34,18 @@ class Systems
         foreach (var entity in view)
         {
             var pos = registry.GetComponent<SampleECS.Components.Positional.Position>(entity);
-            Console.WriteLine($"entity: {entity}, pos: {pos.X},{pos.Y}");
+            Console.WriteLine($"Printer entity: {entity}, pos: {pos.X},{pos.Y}");
         }
     }
 
-
+    internal static void RunRender(Registry registry)
+    {
+        var view = registry.View<SampleECS.Components.Positional.Velocity, SampleECS.Components.Positional.Position, SampleECS.Components.Displayable.SpriteInfo>();
+        foreach (var entity in view)
+        {
+            var pos = registry.GetComponent<SampleECS.Components.Positional.Position>(entity);
+            var sprite = registry.GetComponent<SampleECS.Components.Displayable.SpriteInfo>(entity);
+            Console.WriteLine($"Render entity: {entity}, pos: {pos.X},{pos.Y}, color : {sprite.color}");
+        }
+    }
 }
